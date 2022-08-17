@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Files = require('edacy-files-walk');
 require('dotenv').config();
 const {DB_USERNAME, DB_PASS, NODE_DEV, PORT} = process.env
+const {graphqlHTTP} = require('express-graphql')
 app.use(express.json())
 
 const cors = require('cors')
@@ -15,6 +16,13 @@ app.use(cors({
   "optionsSuccessStatus": 204,
   credentials: true
 }));
+
+//graphql
+// app.use('/graphql', graphqlHTTP({
+//   schema: schema,
+//   rootValue: root,
+//   graphiql: true,
+// }));
 
 mongoose.connect(process.env.DB_URL)
          .then((result)=>{
